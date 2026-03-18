@@ -11,6 +11,28 @@ const header = document.querySelector('header');
 const footer = document.querySelector('footer');
 const main = document.querySelector('main');
 
+// Store expenses in localStorage
+const now = new Date();
+const expensesData = [
+    { name: 'Meal', amount: 1730, category: 'Food', date: '05.03.2026', time: '08:23' },
+    { name: 'Rent', amount: 1300, category: 'Housing', date: '01.03.2026', time: '11:15' },
+    { name: 'Khala bill', amount: 300, category: 'Utilities', date: '07.03.2026', time: '14:48' },
+    { name: 'Wifi + Electricity', amount: 200, category: 'Utilities', date: '03.03.2026', time: '17:12' },
+    { name: 'Nur', amount: 1200, category: 'Personal', date: '10.03.2026', time: '09:40' },
+    { name: 'M vai', amount: 305, category: 'Personal', date: '12.03.2026', time: '18:25' },
+    { name: 'Maruf', amount: 105, category: 'Personal', date: '15.03.2026', time: '13:35' },
+    { name: 'Arf', amount: 500, category: 'Personal', date: '08.03.2026', time: '07:50' },
+    { name: 'Nanike dichi', amount: 5000, category: 'Personal', date: '14.03.2026', time: '10:22' },
+    { name: 'Bari asa', amount: 200, category: 'Personal', date: '16.03.2026', time: '15:15' },
+    { name: 'Jawa', amount: 160, category: 'Transportation', date: '02.03.2026', time: '08:10' },
+    { name: 'Riksha', amount: 500, category: 'Transportation', date: '06.03.2026', time: '12:42' },
+    { name: 'ASF', amount: 60, category: 'Personal', date: '09.03.2026', time: '16:30' },
+    { name: 'P', amount: 850, category: 'Personal', date: '11.03.2026', time: '09:05' },
+    { name: 'P', amount: 669, category: 'Personal', date: '13.03.2026', time: '14:50' },
+    { name: 'P', amount: 300, category: 'Personal', date: '17.03.2026', time: '19:15' }
+];
+localStorage.setItem('expenses', JSON.stringify(expensesData));
+
 function setMainHeight() {
     const headerHeight = header.offsetHeight;
     const footerHeight = footer.offsetHeight;
@@ -24,41 +46,36 @@ function clearContainers() {
     });
 }
 
-function makeExpenseList() {
-    const wrapper = document.createElement('div');
+function renderHome() {
+    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
 
+    // Update the total button in nav
+    const totalButton = document.querySelector('nav button');
+    totalButton.textContent = `$${total}`;
 
-    for (let c = 1; c <= 20; c++) {
+    const home = containers.home;
+
+    expenses.forEach((exp, index) => {
         const expenseList = document.createElement('ul');
         expenseList.classList.add('list', 'bg-green-200');
         expenseList.innerHTML = `
-                <!-- Each expense -->
                 <li class="list-row">
-                    <!-- the icon -->
                     <div class="flex items-center justify-center">
                         <i class="fa-solid fa-bicycle text-2xl"></i>
                     </div>
-                    <!-- details -->
                     <div class="list-col-grow">
-                        <div>Dio Lupa ${c}</div>
-                        <div>Remaining Reason</div>
+                        <div class="font-semibold text-base">${exp.name}</div>
+                        <div class="text-xs text-gray-600">${exp.category} - ${exp.date} ${exp.time}</div>
                     </div>
-                    <!-- amount -->
-                    <div class="flex justify-center items-center">
-                        $12000000000
+                    <div class="flex justify-center items-center font-bold text-lg">
+                        $${exp.amount}
                     </div>
                 </li>
                 <hr class="mx-4 border-green-300">
             `;
-        wrapper.appendChild(expenseList);
-    }
-
-    return wrapper;
-}
-
-function renderHome() {
-    const home = containers.home;
-    home.appendChild(makeExpenseList());
+        home.appendChild(expenseList);
+    });
 }
 
 function renderCalendar() {
