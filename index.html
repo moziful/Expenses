@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Manager</title>
+    <!-- Tailwind + DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        main {
+            overflow-y: auto;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+        }
+
+        main::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        main {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-gray-50">
+    <header class="sticky top-0 bg-white z-10 shadow-sm">
+        <nav class="navbar bg-red-300">
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl">Expense Manager</a>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto bg-white" />
+
+                <button class="btn btn-outline bg-white">
+                    $1234534567890
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main class="flex-grow pb-10">
+        <div id="expenseContainer">
+            <!-- Expenses will be generated dynamically -->
+        </div>
+        <div id="calendarContainer">
+            <!-- Calendar will be generated dynamically -->
+        </div>
+        <div id="chartsContainer">
+            <!-- Charts will be generated dynamically -->
+        </div>
+        <div id="settingsContainer">
+            <!-- Settings will be generated dynamically -->
+        </div>
+
+        <!-- Add Button -->
+        <div id="fab"
+            class="fixed bottom-15 right-3 w-13 h-13 bg-green-500 rounded-2xl flex justify-center items-center text-white text-2xl cursor-pointer">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+    </main>
+    <footer class="fixed bottom-0 w-full py-1 bg-blue-300 shadow-md">
+        <div role="tablist" class="tabs tabs-border w-full flex justify-between">
+            <a role="tab" data-tab="home" class="tab tab-active flex-1 flex flex-col items-center">
+                <i class="fa-solid fa-house"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a role="tab" data-tab="calendar" class="tab flex-1 flex flex-col items-center">
+                <i class="fa-solid fa-calendar"></i>
+                <span class="text-xs">Calendar</span>
+            </a>
+            <a role="tab" data-tab="charts" class="tab flex-1 flex flex-col items-center">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span class="text-xs">Charts</span>
+            </a>
+            <a role="tab" data-tab="settings" class="tab flex-1 flex flex-col items-center">
+                <i class="fa-solid fa-gear"></i>
+                <span class="text-xs">Settings</span>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
