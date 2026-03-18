@@ -18,6 +18,7 @@ const expensesData = [
     { name: 'Rent', amount: 1300, category: 'Housing', date: '01.03.2026', time: '11:15' },
     { name: 'Khala bill', amount: 300, category: 'Utilities', date: '07.03.2026', time: '14:48' },
     { name: 'Wifi + Electricity', amount: 200, category: 'Utilities', date: '03.03.2026', time: '17:12' },
+    { name: 'Mama', amount: 5200, category: 'Income', date: '04.03.2026', time: '19:30' },
     { name: 'Nur', amount: 1200, category: 'Personal', date: '10.03.2026', time: '09:40' },
     { name: 'M vai', amount: 305, category: 'Personal', date: '12.03.2026', time: '18:25' },
     { name: 'Maruf', amount: 105, category: 'Personal', date: '15.03.2026', time: '13:35' },
@@ -32,6 +33,19 @@ const expensesData = [
     { name: 'P', amount: 300, category: 'Personal', date: '17.03.2026', time: '19:15' }
 ];
 localStorage.setItem('expenses', JSON.stringify(expensesData));
+
+function getCategoryIcon(category) {
+    const icons = {
+        'Food': 'fa-utensils',
+        'Housing': 'fa-house-chimney',
+        'Utilities': 'fa-lightbulb',
+        'Income': 'fa-money-check-dollar',
+        'Personal': 'fa-user',
+        'Transportation': 'fa-car-side',
+        'Tea': 'fa-mug-hot',
+    };
+    return icons[category] || 'fa-question';
+}
 
 function setMainHeight() {
     const headerHeight = header.offsetHeight;
@@ -59,22 +73,27 @@ function renderHome() {
     expenses.forEach((exp, index) => {
         const expenseList = document.createElement('ul');
         expenseList.classList.add('list', 'bg-green-200');
-        expenseList.innerHTML = `
-                <li class="list-row">
+
+        const li = document.createElement('li');
+        li.classList.add('list-row');
+        li.innerHTML = `
                     <div class="flex items-center justify-center">
-                        <i class="fa-solid fa-bicycle text-2xl"></i>
+                        <i class="fa-solid ${getCategoryIcon(exp.category)} text-2xl"></i>
                     </div>
                     <div class="list-col-grow">
                         <div class="font-semibold text-base">${exp.name}</div>
-                        <div class="text-xs text-gray-600">${exp.category} - ${exp.date} ${exp.time}</div>
+                        <div class="text-xs text-gray-600">${exp.category} • ${exp.time}</div>
                     </div>
-                    <div class="flex justify-center items-center font-bold text-lg">
-                        $${exp.amount}
+                    <div class="flex justify-center items-center font-bold text-lg ${exp.category === 'Income' ? 'text-green-500' : 'text-red-500'}">
+                        ${exp.amount}
                     </div>
-                </li>
-                <hr class="mx-4 border-green-300">
-            `;
+                `;
+        expenseList.appendChild(li);
         home.appendChild(expenseList);
+
+        const hr = document.createElement('hr');
+        hr.classList.add('border-b-1', 'mx-4', 'border-green-300');
+        home.appendChild(hr);
     });
 }
 
