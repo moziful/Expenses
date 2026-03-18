@@ -72,6 +72,7 @@ function renderHome() {
         hr.classList.add('border-b-1', 'mx-4', 'border-green-300');
         home.appendChild(hr);
     });
+    addEntry.showModal();
 }
 
 function renderCalendar() {

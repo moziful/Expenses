@@ -72,12 +72,18 @@
         <!-- Open the modal using ID.showModal() method -->
         <dialog id="addEntry" class="modal">
             <div class="modal-box bg-green-200">
-                <h3 class="text-lg font-bold">Hello!</h3>
-                <p class="py-4">Press ESC key or click the button below to close</p>
+                <h3 class="text-lg font-bold pb-3">Add New Expense</h3>
+                <input type="text" placeholder="Expense Name" class="input input-bordered w-full bg-red-100 mb-3">
+                <input type="text" placeholder="Amount" class="input input-bordered w-full bg-red-100 mb-3">
+                <input type="text" placeholder="Category" class="input input-bordered w-full bg-red-100 mb-3">
+                <input type="text" placeholder="Date" class="input input-bordered w-full bg-red-100 mb-3">
+                <input type="text" placeholder="Time" class="input input-bordered w-full bg-red-100 mb-3">
+                <input type="text" placeholder="Description" class="input input-bordered w-full bg-red-100 mb-3">
                 <div class="modal-action">
                     <form method="dialog">
                         <!-- if there is a button in form, it will close the modal -->
-                        <button class="btn">Close</button>
+                        <button class="btn bg-red-300">Close</button>
+                        <button class="btn bg-green-400">Save</button>
                     </form>
                 </div>
             </div>
