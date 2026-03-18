@@ -11,29 +11,6 @@ const header = document.querySelector('header');
 const footer = document.querySelector('footer');
 const main = document.querySelector('main');
 
-// Store expenses in localStorage
-const now = new Date();
-const expensesData = [
-    { name: 'Meal', amount: 1730, category: 'Food', date: '05.03.2026', time: '08:23' },
-    { name: 'Rent', amount: 1300, category: 'Housing', date: '01.03.2026', time: '11:15' },
-    { name: 'Khala bill', amount: 300, category: 'Utilities', date: '07.03.2026', time: '14:48' },
-    { name: 'Wifi + Electricity', amount: 200, category: 'Utilities', date: '03.03.2026', time: '17:12' },
-    { name: 'Mama', amount: 5200, category: 'Income', date: '04.03.2026', time: '19:30' },
-    { name: 'Nur', amount: 1200, category: 'Personal', date: '10.03.2026', time: '09:40' },
-    { name: 'M vai', amount: 305, category: 'Personal', date: '12.03.2026', time: '18:25' },
-    { name: 'Maruf', amount: 105, category: 'Personal', date: '15.03.2026', time: '13:35' },
-    { name: 'Arf', amount: 500, category: 'Personal', date: '08.03.2026', time: '07:50' },
-    { name: 'Nanike dichi', amount: 5000, category: 'Personal', date: '14.03.2026', time: '10:22' },
-    { name: 'Bari asa', amount: 200, category: 'Personal', date: '16.03.2026', time: '15:15' },
-    { name: 'Jawa', amount: 160, category: 'Transportation', date: '02.03.2026', time: '08:10' },
-    { name: 'Riksha', amount: 500, category: 'Transportation', date: '06.03.2026', time: '12:42' },
-    { name: 'ASF', amount: 60, category: 'Personal', date: '09.03.2026', time: '16:30' },
-    { name: 'P', amount: 850, category: 'Personal', date: '11.03.2026', time: '09:05' },
-    { name: 'P', amount: 669, category: 'Personal', date: '13.03.2026', time: '14:50' },
-    { name: 'P', amount: 300, category: 'Personal', date: '17.03.2026', time: '19:15' }
-];
-localStorage.setItem('expenses', JSON.stringify(expensesData));
-
 function getCategoryIcon(category) {
     const icons = {
         'Food': 'fa-utensils',
@@ -61,7 +38,7 @@ function clearContainers() {
 }
 
 function renderHome() {
-    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    const expenses = JSON.parse(localStorage.getItem('expenses')) || ['No Expenses Found'];
     const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
 
     // Update the total button in nav

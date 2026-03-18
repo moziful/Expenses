@@ -65,10 +65,23 @@
         </div>
 
         <!-- Add Button -->
-        <div id="fab"
+        <div onclick="addEntry.showModal()" id="fab"
             class="fixed bottom-15 right-3 w-13 h-13 bg-green-500 rounded-2xl flex justify-center items-center text-white text-2xl cursor-pointer">
             <i class="fa-solid fa-plus"></i>
         </div>
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="addEntry" class="modal">
+            <div class="modal-box bg-green-200">
+                <h3 class="text-lg font-bold">Hello!</h3>
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
     </main>
     <footer class="fixed bottom-0 w-full py-1 bg-blue-300 shadow-md">
         <div role="tablist" class="tabs tabs-border w-full flex justify-between">
