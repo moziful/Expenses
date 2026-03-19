@@ -21,7 +21,7 @@ function getCategoryIcon(category) {
         'Transportation': 'fa-car-side',
         'Tea': 'fa-mug-hot',
     };
-    return icons[category] || 'fa-question';
+    return icons[category] || 'fa-file-circle-question';
 }
 
 function setMainHeight() {
@@ -174,3 +174,20 @@ window.addEventListener('resize', setMainHeight);
 
 // Add scroll listener to main for dynamic padding
 main.addEventListener('scroll', updatePadding);
+
+
+
+
+const dateInput = document.getElementById('dateInput');
+const timeInput = document.getElementById('timeInput');
+
+const now = new Date();
+
+// Format: YYYY-MM-DD (required for date input)
+const date = now.toISOString().split('T')[0];
+
+// Format: HH:MM (24-hour)
+const time = now.toTimeString().slice(0, 5);
+
+dateInput.value = date;
+timeInput.value = time;
