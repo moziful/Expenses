@@ -178,6 +178,41 @@ window.addEventListener('resize', setMainHeight);
 // Add scroll listener to main for dynamic padding
 main.addEventListener('scroll', updatePadding);
 
+// Tab switching functions for modal
+function setExpenseMode() {
+    const tabs = document.querySelectorAll('.modal .tabs a[role="tab"]');
+    tabs[0].classList.add('tab-active', 'bg-green-300');
+    tabs[0].classList.remove('bg-green-200');
+    tabs[1].classList.remove('tab-active', 'bg-green-300');
+    tabs[1].classList.add('bg-green-200');
+    const select = document.querySelector('.modal select');
+    select.innerHTML = `
+        <option value="" disabled selected>Select Category</option>
+        <option value="Food">Food</option>
+        <option value="Housing">Housing</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Personal">Personal</option>
+        <option value="Transportation">Transportation</option>
+        <option value="Other">Other</option>
+    `;
+}
+
+function setIncomeMode() {
+    const tabs = document.querySelectorAll('.modal .tabs a[role="tab"]');
+    tabs[1].classList.add('tab-active', 'bg-green-300');
+    tabs[1].classList.remove('bg-green-200');
+    tabs[0].classList.remove('tab-active', 'bg-green-300');
+    tabs[0].classList.add('bg-green-200');
+    const select = document.querySelector('.modal select');
+    select.innerHTML = `
+        <option value="" disabled selected>Select Type</option>
+        <option value="Salary">Salary</option>
+        <option value="Freelance">Freelance</option>
+        <option value="Investment">Investment</option>
+        <option value="Other">Other</option>
+    `;
+}
+
 
 
 
