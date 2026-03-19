@@ -59,7 +59,10 @@ function renderHome() {
                     </div>
                     <div class="list-col-grow">
                         <div class="font-semibold text-base">${exp.name}</div>
-                        <div class="text-xs text-gray-600">${exp.category} • ${exp.time}</div>
+                        <div class="text-xs text-gray-600 flex justify-between">
+                            <span>${exp.category}</span>
+                            <span><i class="fa-solid fa-clock"></i> ${exp.time}</span>
+                        </div>
                     </div>
                     <div class="flex justify-center items-center font-bold text-lg ${exp.category === 'Income' ? 'text-green-500' : 'text-red-500'}">
                         ${exp.amount}
